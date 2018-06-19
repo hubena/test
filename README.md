@@ -10,3 +10,5 @@ slf4j装配其他日志https://blog.csdn.net/jek123456/article/details/53202698
 
 注解实现MQ
 https://blog.csdn.net/robertohuang/article/details/79543953
+Spring AMQP中文文档
+http://ju.outofmemory.cn/entry/320538
