@@ -7,3 +7,6 @@ http://itindex.net/detail/51416-netty-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-clien
 数据库连接池实现原理：https://blog.csdn.net/fuyuwei2015/article/details/72419975
 
 slf4j装配其他日志https://blog.csdn.net/jek123456/article/details/53202698
+
+注解实现MQ
+https://blog.csdn.net/robertohuang/article/details/79543953
