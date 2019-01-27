@@ -1,0 +1,42 @@
+	public List<QuickPaymentBizReport> buildJDReports(File file) throws Exception {
+		List<QuickPaymentBizReport> reports = new ArrayList<QuickPaymentBizReport>();
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file), "GBK");// 考虑到编码格式
+		BufferedReader bufferReader = new BufferedReader(read);
+		String line = null;
+		int rowIndex = 0;
+		while ((line = bufferReader.readLine()) != null) { // 每一行
+			String[] cells = line.split(",");
+			if (++rowIndex == 1) {
+				continue; // 第一行为标题头，略过
+			}
+			QuickPaymentBizReport report = new QuickPaymentBizReport();
+			report.setBpId("");
+			report.setOperType(QuickPaymentBizReport.OPERTYPE_108);
+			report.setTransDesc("快捷支付");
+			report.setIsChecked(QuickPaymentBizReport.ISCHECKED_0);
+			report.setResult(QuickPaymentBizReport.RESULT_1);
+			report.setDqOrderId("");
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			for (int i = 0; i < cells.length; i++) {
+				String value = cells[i].trim();
+				switch (i) {
+				case 0:
+					value = value.substring(2, value.length() - 1);
+					report.setBpOrderId(value);
+					break;
+				case 2:
+					report.setAmount(Arith.getLongVal(value));
+					break;
+				case 8:
+					value = new SimpleDateFormat("yyyyMMddHHmmss").format(format.parse(value));
+					report.setTransDate(value);
+					break;
+				default:
+					break;
+				}
+			}
+			reports.add(report);
+
+		}
+		return reports;
+	}
